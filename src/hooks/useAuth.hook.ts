@@ -1,16 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import UserLogin from 'classes/userLogin.class';
+import UserRegistration from 'classes/userRegistration.class';
 import userState from '../recoil/store';
 
-const useLogin = () => {
+const useAuth = () => {
   const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
   const login = (data: UserLogin) => {
     setUser({ id: data.email });
     navigate('/');
   };
-  return login;
+  const register = (data: UserRegistration) => {
+    navigate('/login');
+  };
+  return {
+    login,
+    register,
+  };
 };
 
-export default useLogin;
+export default useAuth;

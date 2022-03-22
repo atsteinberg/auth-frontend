@@ -1,92 +1,38 @@
 import {
   Box,
-  Button, Card, CardActionArea, CardContent, Checkbox, Container, FormControlLabel, Grid,
 } from '@mui/material';
 import UserLogin from 'classes/userLogin.class';
-import FormTextInput from 'components/FormTextInput/FormTextInput';
-import useLogin from 'hooks/useLogin.hook';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Control, FieldValues, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
+import useAuth from 'hooks/useAuth.hook';
+import LoginForm from './LoginForm/LoginForm';
+import CardButtons from '../CardButtons';
 
 const resolver = classValidatorResolver(UserLogin);
 
 const Login: FC = () => {
-  const login = useLogin();
+  const { login } = useAuth();
   const {
     control, handleSubmit, reset, formState: { errors },
   } = useForm<UserLogin>({ resolver });
-  const [passwordTextFieldType, setPasswordTextfielType] = useState('password');
 
   const genericControl = control as unknown as Control<FieldValues, unknown>;
-  const onSubmit = (data: UserLogin) => login(data);
+  const onSubmit = (data: UserLogin) => {
+    login(data);
+  };
   return (
-    <Box display="flex" alignItems="center" height="100vh">
-      <Container maxWidth="md">
-        <Card sx={
-          {
-            margin: {
-              md: '0 5rem 30% 5rem', padding: '2rem',
-            },
-            minWidth: '25rem',
-          }
-        } >
-          <form>
-            <CardContent>
-              <Grid container rowGap="2rem">
-                <Grid item xs={ 12 }>
-                  <FormTextInput
-                    fullWidth
-                    label="Email"
-                    name="email"
-                    control={ genericControl }
-                    required
-                    error={ Boolean(errors.email) }
-                    helperText={ errors.email?.message }
-                  />
-                </Grid>
-                <Grid item xs={ 12 } display="flex" alignItems={ 'flex-start' }>
-                  <FormTextInput
-                    label="Password"
-                    name="password"
-                    control={ genericControl }
-                    type={ passwordTextFieldType }
-                    required
-                    sx={ { flex: 1 } }
-                    autoComplete="new-password"
-                    error={ Boolean(errors.password) }
-                    helperText={ errors.password?.message }
-                  />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        onChange={ (_, checked) => setPasswordTextfielType(checked ? 'text' : 'password') } />
-                    }
-                    label="show"
-                    sx={ { marginLeft: '1rem', marginTop: '0.5rem' } }
-                  />
-                </Grid>
-              </Grid>
-            </CardContent>
-            <CardActionArea sx={
-              {
-                display: 'flex', justifyContent: 'space-between', padding: '0 1rem', marginTop: '1rem',
-              }
-            }>
-              <Button onClick={ () => reset() } type="button" sx={ { minWidth: '45%' } }>cancel</Button>
-              <Button onClick={ handleSubmit(onSubmit) } type="submit" variant='contained' sx={ { minWidth: '45%' } }>login</Button>
-            </CardActionArea>
-            <Box display='flex' justifyContent="center" marginTop="1rem">
-              <Box marginRight='0.5rem'>
+    <>
+      <LoginForm errors={ errors } control={ genericControl } />
+      <CardButtons reset={ () => reset() } handleSubmit={ handleSubmit(onSubmit) } submitText="login"/>
+      <Box display='flex' justifyContent="center" marginTop="1rem">
+        <Box marginRight='0.5rem'>
                 or
-              </Box>
-              <Link to="/register"> register</Link>
-            </Box>
-          </form>
-        </Card>
-      </Container>
-    </Box>
+        </Box>
+        <Link to="/register"> register</Link>
+      </Box>
+    </>
   );
 };
 
