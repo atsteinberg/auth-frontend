@@ -1,5 +1,16 @@
 import { FC } from 'react';
+import { useRecoilValue } from 'recoil';
+import userState from 'recoil/store';
 
-const AuthenticatedApp: FC = () => <h1>Authenticated App</h1>;
+const AuthenticatedApp: FC = () => {
+  const user = useRecoilValue(userState);
+  return (
+    <div>
+      <h1>Authenticated App</h1>
+      <h2>user</h2>
+      <p>{ user?.id }</p>
+    </div>
+  );
+};
 
 export default AuthenticatedApp;
