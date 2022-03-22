@@ -12,7 +12,14 @@ const FormTextInput: FC<FormTextInputProps> = ({ control, name, ...props }) => (
     control={ control }
     name={ name }
     defaultValue=""
-    render={ ({ field }) => <TextField value={ field.value } onChange={ field.onChange } { ...props }/> }
+    render={
+      ({ field }) => <TextField
+        value={ field.value }
+        onChange={ field.onChange }
+        style={ { marginBottom: '0.5rem' } }
+        { ...props }
+      />
+    }
   />
 );
 

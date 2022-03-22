@@ -14,7 +14,9 @@ const resolver = classValidatorResolver(UserLogin);
 
 const Login: FC = () => {
   const login = useLogin();
-  const { control, handleSubmit, reset } = useForm<UserLogin>({ resolver });
+  const {
+    control, handleSubmit, reset, formState: { errors },
+  } = useForm<UserLogin>({ resolver });
   const [passwordTextFieldType, setPasswordTextfielType] = useState('password');
 
   const genericControl = control as unknown as Control<FieldValues, unknown>;
@@ -27,15 +29,24 @@ const Login: FC = () => {
             margin: {
               md: '0 5rem 30% 5rem', padding: '2rem',
             },
+            minWidth: '25rem',
           }
         } >
           <form>
             <CardContent>
               <Grid container rowGap="2rem">
                 <Grid item xs={ 12 }>
-                  <FormTextInput fullWidth label="Email" name="email" control={ genericControl } required />
+                  <FormTextInput
+                    fullWidth
+                    label="Email"
+                    name="email"
+                    control={ genericControl }
+                    required
+                    error={ Boolean(errors.email) }
+                    helperText={ errors.email?.message }
+                  />
                 </Grid>
-                <Grid item xs={ 12 } display="flex" alignItems="center">
+                <Grid item xs={ 12 } display="flex" alignItems={ 'flex-start' }>
                   <FormTextInput
                     label="Password"
                     name="password"
@@ -44,6 +55,8 @@ const Login: FC = () => {
                     required
                     sx={ { flex: 1 } }
                     autoComplete="new-password"
+                    error={ Boolean(errors.password) }
+                    helperText={ errors.password?.message }
                   />
                   <FormControlLabel
                     control={
@@ -51,7 +64,7 @@ const Login: FC = () => {
                         onChange={ (_, checked) => setPasswordTextfielType(checked ? 'text' : 'password') } />
                     }
                     label="show"
-                    sx={ { marginLeft: '1rem' } }
+                    sx={ { marginLeft: '1rem', marginTop: '0.5rem' } }
                   />
                 </Grid>
               </Grid>

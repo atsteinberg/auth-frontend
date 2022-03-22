@@ -14,6 +14,17 @@ export const themeOptions: ThemeOptions = {
   typography: {
     fontSize: 14,
   },
+  components: {
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          // Use existing space / prevents shifting content below field
+          marginTop: 0,
+          height: 0,
+        },
+      },
+    },
+  },
 };
 
 const theme = createTheme(themeOptions);
