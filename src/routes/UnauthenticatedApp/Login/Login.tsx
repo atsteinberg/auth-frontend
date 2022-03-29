@@ -7,8 +7,8 @@ import { Control, FieldValues, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import useAuth from 'hooks/useAuth.hook';
-import LoginForm from './LoginForm/LoginForm';
-import CardButtons from '../CardButtons';
+import LoginForm from '../../../components/LoginForm/LoginForm';
+import CardButtons from '../../../components/CardButtons';
 
 const resolver = classValidatorResolver(UserLogin);
 
@@ -19,8 +19,13 @@ const Login: FC = () => {
   } = useForm<UserLogin>({ resolver });
 
   const genericControl = control as unknown as Control<FieldValues, unknown>;
-  const onSubmit = (data: UserLogin) => {
-    login(data);
+  const onSubmit = async (data: UserLogin) => {
+    try {
+      await login(data);
+    } catch (error) {
+      // TODO display error
+      console.log('error', error);
+    }
   };
   return (
     <>

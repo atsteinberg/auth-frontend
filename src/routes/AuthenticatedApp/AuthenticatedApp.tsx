@@ -8,7 +8,7 @@ const AuthenticatedApp: FC = () => {
     <div>
       <h1>Authenticated App</h1>
       <h2>user</h2>
-      <p>{ user?.id }</p>
+      <p>{ user?.accessToken }</p>
     </div>
   );
 };

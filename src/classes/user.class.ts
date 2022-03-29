@@ -1,8 +1,5 @@
-import { IsString } from 'class-validator';
-
 class User {
-  @IsString()
-    id: string;
+  accessToken?: string;
 }
 
 export default User;

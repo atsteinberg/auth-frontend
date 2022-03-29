@@ -4,7 +4,7 @@ import useAuth from 'hooks/useAuth.hook';
 import { FC } from 'react';
 import { Control, FieldValues, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import CardButtons from '../CardButtons';
+import CardButtons from '../../../components/CardButtons';
 import RegisterForm from './RegisterForm';
 
 const Registration: FC = () => {
@@ -12,8 +12,8 @@ const Registration: FC = () => {
   const {
     reset, formState: { errors }, handleSubmit, control,
   } = useForm<UserRegistration>();
-  const onSubmit = (data: UserRegistration) => {
-    register(data);
+  const onSubmit = async (data: UserRegistration) => {
+    await register(data);
   };
   const genericControl = control as unknown as Control<FieldValues, unknown>;
 

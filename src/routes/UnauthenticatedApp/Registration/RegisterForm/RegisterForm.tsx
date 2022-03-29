@@ -21,7 +21,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ errors, control }) => {
             <FormTextInput
               fullWidth
               label="Name"
-              name="name"
+              name="userName"
               control={ control }
               required
               error={ Boolean(errors.email) }

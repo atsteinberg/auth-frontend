@@ -1,9 +1,10 @@
-import { IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import UserLogin from './userLogin.class';
 
 class UserRegistration extends UserLogin {
   @IsString()
-    name: string;
+  @IsNotEmpty()
+    userName: string;
 }
 
 export default UserRegistration;
