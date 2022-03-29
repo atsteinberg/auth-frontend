@@ -18,7 +18,11 @@ const useAuth = () => {
       });
       navigate('/');
     } catch (error) {
-      throw new Error(`login unsuccessful: ${error}`);
+      if (isAxiosError(error) && error.response?.status === 403) {
+        toast.error('Email and password do not match');
+      } else {
+        toast.error('Login unsuccessful. Please try again later.');
+      }
     }
   };
 
