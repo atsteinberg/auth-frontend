@@ -1,3 +1,4 @@
+import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import Box from '@mui/material/Box';
 import UserRegistration from 'classes/userRegistration.class';
 import useAuth from 'hooks/useAuth.hook';
@@ -5,13 +6,15 @@ import { FC } from 'react';
 import { Control, FieldValues, useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import CardButtons from '../../../components/CardButtons';
-import RegisterForm from './RegisterForm';
+import RegisterForm from '../../../components/RegisterForm';
+
+const resolver = classValidatorResolver(UserRegistration);
 
 const Registration: FC = () => {
   const { register } = useAuth();
   const {
     reset, formState: { errors }, handleSubmit, control,
-  } = useForm<UserRegistration>();
+  } = useForm<UserRegistration>({ resolver });
   const onSubmit = async (data: UserRegistration) => {
     await register(data);
   };

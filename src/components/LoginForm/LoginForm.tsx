@@ -26,6 +26,7 @@ const LoginForm: FC<LoginFormProps> = ({ errors, control }) => {
               required
               error={ Boolean(errors.email) }
               helperText={ errors.email?.message }
+              autoComplete="username"
             />
           </Grid>
           <Grid item xs={ 12 } display="flex" alignItems={ 'flex-start' }>

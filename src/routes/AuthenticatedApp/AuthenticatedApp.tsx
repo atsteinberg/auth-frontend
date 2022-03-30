@@ -1,16 +1,14 @@
 import { FC } from 'react';
-import { useRecoilValue } from 'recoil';
-import userState from 'recoil/store';
+import { Route, Routes } from 'react-router-dom';
+import Customers from './Customers/Customers';
+import Layout from './Layout';
 
-const AuthenticatedApp: FC = () => {
-  const user = useRecoilValue(userState);
-  return (
-    <div>
-      <h1>Authenticated App</h1>
-      <h2>user</h2>
-      <p>{ user?.accessToken }</p>
-    </div>
-  );
-};
+const AuthenticatedApp: FC = () => (
+  <Routes>
+    <Route element={ <Layout /> }>
+      <Route path='*' element={ <Customers /> } />
+    </Route>
+  </Routes>
+);
 
 export default AuthenticatedApp;

@@ -1,5 +1,5 @@
 import {
-  Button, CardActionArea,
+  Button, CardActions,
 } from '@mui/material';
 import { FC } from 'react';
 
@@ -10,14 +10,14 @@ type CardButtonsProps = {
 };
 
 const CardButtons: FC<CardButtonsProps> = ({ reset, handleSubmit, submitText }) => (
-  <CardActionArea sx={
+  <CardActions sx={
     {
       display: 'flex', justifyContent: 'space-between', padding: '0 1rem', marginTop: '1rem',
     }
   }>
     <Button onClick={ reset } type="button" sx={ { minWidth: '45%' } }>cancel</Button>
     <Button onClick={ handleSubmit } type="submit" variant='contained' sx={ { minWidth: '45%' } }>{ submitText }</Button>
-  </CardActionArea>
+  </CardActions>
 );
 
 export default CardButtons;
