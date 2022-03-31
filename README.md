@@ -1,14 +1,16 @@
-# Getting Started
+# Description
 
 This is a toy react app that uses jwt auth.
-
+# Getting Started
 ## Clone from github
 
 Clone the repo:
 
-## Install node
+## Install node and packages
 
-If you haven't done so already, install Node (v17.4.0)
+If you haven't done so already, install Node (v17.4.0).
+
+Run `npm install` in the root folder of the repo.
 ## Start the backend
 
 Clone the backend from XXX. Fill in the required env variables (see docs in backend repo). Run `npm start` in the root folder of the backend repo.
