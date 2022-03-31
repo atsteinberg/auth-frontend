@@ -5,6 +5,9 @@ This is a toy react app that uses jwt auth.
 ## Clone from github
 
 Clone the repo:
+```bash
+git clone https://github.com/atsteinberg/auth-frontend.git
+```
 
 ## Install node and packages
 
@@ -13,7 +16,7 @@ If you haven't done so already, install Node (v17.4.0).
 Run `npm install` in the root folder of the repo.
 ## Start the backend
 
-Clone the backend from XXX. Fill in the required env variables (see docs in backend repo). Run `npm start` in the root folder of the backend repo.
+Clone the backend from `git@github.com:atsteinberg/auth-backend.git`. Set the required env variables (see docs in backend repo). Run `npm start` in the root folder of the backend repo.
 
 ## Set correct env variables
 
