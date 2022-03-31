@@ -1,6 +1,21 @@
-# Getting Started with Create React App
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a toy react app that uses jwt auth.
+
+## Clone from github
+
+Clone the repo:
+
+## Install node
+
+If you haven't done so already, install Node (v17.4.0)
+## Start the backend
+
+Clone the backend from XXX. Fill in the required env variables (see docs in backend repo). Run `npm start` in the root folder of the backend repo.
+
+## Set correct env variables
+
+Rename `.env.template` in the project's root folder to `.env` and provide / update the required env variables.
 
 ## Available Scripts
 
