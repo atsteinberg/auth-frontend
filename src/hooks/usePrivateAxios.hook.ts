@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import userState from 'recoil/store';
+import { userState } from 'recoil/store';
 import { privateAxios } from 'services/axios/axios';
 import useRefreshAccessToken from './useRefreshAccessToken';
 

@@ -4,7 +4,7 @@ import UserLogin from 'classes/userLogin.class';
 import UserRegistration from 'classes/userRegistration.class';
 import { isAxiosError, publicAxios } from 'services/axios/axios';
 import { toast } from 'react-toastify';
-import userState from '../recoil/store';
+import { userState } from '../recoil/store';
 import usePrivateAxios from './usePrivateAxios.hook';
 
 const useAuth = () => {

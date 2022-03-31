@@ -1,12 +1,41 @@
-import { Typography } from '@mui/material';
-import { FC } from 'react';
+import { ClickAwayListener, List, Typography } from '@mui/material';
+import CustomerListItem from 'components/CustomerListItem';
+import { FC, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useCustomerList from './CustomerList.hook';
 
 const CustomerList: FC = () => {
   const { customers } = useCustomerList();
-  return (<>
-    { customers.map((customer) => <Typography key={ customer.customerId } variant='h3'>{ customer.fullName }</Typography>) }
-  </>
+
+  const navigate = useNavigate();
+
+  const [selectedCustomerId, setSelectedCustomerId] = useState<string>('');
+  useEffect(() => {
+  }, [selectedCustomerId]);
+
+  const handleSelect = (id: string) => {
+    setSelectedCustomerId(id);
+    navigate(`/customers/${id}`);
+  };
+
+  if (!customers) {
+    return <Typography>Loading</Typography>;
+  }
+
+  return (
+    <ClickAwayListener onClickAway={ () => setSelectedCustomerId('') }>
+
+      <List sx={ { width: '100%', maxWidth: 360, bgcolor: 'background.paper' } }>
+        {
+          customers.map((customer) => <CustomerListItem
+            { ...customer }
+            key={ customer.customerId }
+            select={ handleSelect }
+            selectedId={ selectedCustomerId }
+          />)
+        }
+      </List>
+    </ClickAwayListener>
   );
 };
 

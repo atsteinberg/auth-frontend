@@ -1,5 +1,5 @@
 import { useSetRecoilState } from 'recoil';
-import userState from 'recoil/store';
+import { userState } from 'recoil/store';
 import { publicAxios } from 'services/axios/axios';
 
 const useRefreshAccessToken = () => {
