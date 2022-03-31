@@ -6,7 +6,8 @@ import Layout from './Layout';
 const AuthenticatedApp: FC = () => (
   <Routes>
     <Route element={ <Layout /> }>
-      <Route path='*' element={ <Customers /> } />
+      <Route path='customers' element={ <Customers /> } />
+      <Route path='*' element={ null } />
     </Route>
   </Routes>
 );

@@ -5,10 +5,12 @@ import UserRegistration from 'classes/userRegistration.class';
 import { isAxiosError, publicAxios } from 'services/axios/axios';
 import { toast } from 'react-toastify';
 import userState from '../recoil/store';
+import usePrivateAxios from './usePrivateAxios.hook';
 
 const useAuth = () => {
   const setUser = useSetRecoilState(userState);
   const navigate = useNavigate();
+  const privateAxios = usePrivateAxios();
   const login = async (data: UserLogin) => {
     try {
       const response = await publicAxios.post('/auth/local/signin', data);
@@ -42,9 +44,21 @@ const useAuth = () => {
       }
     }
   };
+
+  const logout = async () => {
+    try {
+      await privateAxios.post('/auth/logout');
+    } catch (error) {
+      toast.error('Could not log out. Please try again later or close your browser.');
+    } finally {
+      setUser(null);
+    }
+  };
+
   return {
     login,
     register,
+    logout,
   };
 };
 

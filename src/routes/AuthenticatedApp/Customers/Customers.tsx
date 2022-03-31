@@ -1,11 +1,7 @@
-import { useRecoilValue } from 'recoil';
-import userState from 'recoil/store';
+import CustomerList from 'components/CustomerList';
 
-const Customers = () => {
-  const user = useRecoilValue(userState);
-  return (
-    <h1>{ user?.accessToken }</h1>
-  );
-};
+const Customers = () => (
+  <CustomerList />
+);
 
 export default Customers;

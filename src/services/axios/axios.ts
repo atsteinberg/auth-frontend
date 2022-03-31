@@ -9,7 +9,6 @@ const headers = {
 
 export const privateAxios = axios.create({
   baseURL,
-  withCredentials: true,
   headers,
 });
 

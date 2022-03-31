@@ -7,7 +7,8 @@ import { Outlet } from 'react-router-dom';
 const Layout: FC = () => (
   <Box display="flex" alignItems="center" height="100vh">
     <NavBar />
-    <Container maxWidth="md">
+
+    <Container maxWidth="lg">
 
       <Outlet />
 
