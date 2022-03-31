@@ -15,6 +15,8 @@ const NavBar = () => {
     setSideBarOpen(!sideBarOpen);
   };
 
+  const closeSideBar = () => setSideBarOpen(false);
+
   const handleLogout: React.MouseEventHandler<HTMLButtonElement> = async () => {
     await logout();
   };
@@ -41,7 +43,7 @@ const NavBar = () => {
         </IconButton>
       </Toolbar>
     </AppBar>
-    <SideBar open={ sideBarOpen } toggle={ handleMenuItemClicked } / >
+    <SideBar open={ sideBarOpen } toggle={ handleMenuItemClicked } close={ closeSideBar }/ >
   </>
   );
 };

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import CustomerDetails from './CustomerDetails';
-import Customers from './Customers/Customers';
+import Customers from './Customers';
 import Layout from './Layout';
 
 const AuthenticatedApp: FC = () => (

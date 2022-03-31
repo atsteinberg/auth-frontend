@@ -8,6 +8,7 @@ import { MenuItemProps } from './MenuItem/MenuItem';
 type SideBarProps = {
   open: boolean;
   toggle: () => void;
+  close?: () => void;
 };
 
 const drawerWidth = '20%';
@@ -23,7 +24,7 @@ const menuItems: MenuItemProps[] = [
   },
 ];
 
-export const SideBar: FC<SideBarProps> = ({ open, toggle }) => (
+export const SideBar: FC<SideBarProps> = ({ open, toggle, close }) => (
   <Drawer
     open={ open }
     sx={
@@ -38,7 +39,7 @@ export const SideBar: FC<SideBarProps> = ({ open, toggle }) => (
   >
     <Toolbar />
     <List>
-      { menuItems.map((item) => <MenuItem key={ item.label } { ...item } />) }
+      { menuItems.map((item) => <MenuItem key={ item.label } { ...item } close={ close } />) }
     </List>
 
   </Drawer>

@@ -1,10 +1,10 @@
-import { PERSON_PLACEHOLDER_URL } from 'constants/common.constants';
+import { transformCustomer } from 'helpers/customer.helpers';
 import usePrivateAxios from 'hooks/usePrivateAxios.hook';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useRecoilState } from 'recoil';
 import { customersState } from 'recoil/store';
-import { Customer } from 'types/customer.type';
+import { CustomerFromApi } from 'types/customer.type';
 
 const useCustomerList = () => {
   const [customers, setCustomers] = useRecoilState(customersState);
@@ -13,21 +13,18 @@ const useCustomerList = () => {
     if (!customers) {
       (async () => {
         try {
-          const response = await privateAxios.get<Customer[]>('/customers');
+          const response = await privateAxios.get<CustomerFromApi[]>('/customers');
           if (!response?.data) {
             throw new Error('could not fetch customers');
           }
-          setCustomers(response.data.map((customer) => ({
-            ...customer,
-            photoThumbnail: customer.photoThumbnail || PERSON_PLACEHOLDER_URL,
-          })));
+          setCustomers(response.data.map(transformCustomer));
         } catch (error) {
           console.error(error); // eslint-disable-line no-console
           toast.error('Something went wrong. Please try again later');
         }
       })();
     }
-  }, [privateAxios, setCustomers]);
+  }, [privateAxios, setCustomers, customers]);
   return { customers };
 };
 

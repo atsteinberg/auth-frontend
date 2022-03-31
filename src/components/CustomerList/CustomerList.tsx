@@ -1,5 +1,6 @@
-import { ClickAwayListener, List, Typography } from '@mui/material';
+import { ClickAwayListener, List } from '@mui/material';
 import CustomerListItem from 'components/CustomerListItem';
+import Loader from 'components/Loader';
 import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useCustomerList from './CustomerList.hook';
@@ -19,7 +20,7 @@ const CustomerList: FC = () => {
   };
 
   if (!customers) {
-    return <Typography>Loading</Typography>;
+    return <Loader />;
   }
 
   return (

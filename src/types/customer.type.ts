@@ -3,7 +3,7 @@ export type Customer = {
   fullName: string;
   email: string;
   status: Status;
-  dateOfBirth: Date;
+  dateOfBirth: string;
   photoThumbnail: string;
   country: string;
 };
@@ -13,7 +13,7 @@ export type CustomerFromApi = {
   fullName: string;
   email: string;
   status: Status;
-  dateOfBirth: Date;
+  dateOfBirth: string;
   photoThumbnail?: string;
   country: string;
 };

@@ -1,16 +1,17 @@
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
+import Loader from 'components/Loader';
+import MainCustomerInfo from 'components/MainCustomerInfo/MainCustomerInfo';
 import { FC } from 'react';
-import { useParams } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
-import { customersState } from 'recoil/store';
+import useCustomerDetails from './CustomerDetails.hook';
 
 const CustomerDetails: FC = () => {
-  const { customerId } = useParams();
-  const customers = useRecoilValue(customersState);
-  const customer = (customers || []).find((currentCustomer) => currentCustomer?.customerId === customerId);
+  const { customer } = useCustomerDetails();
+  if (!customer) {
+    return <Loader />;
+  }
   return (
     <Box marginY={ 4 }>
-      <Typography variant='h3'>{ customer?.fullName }</Typography>
+      <MainCustomerInfo { ...customer } />
     </Box>
   );
 };
